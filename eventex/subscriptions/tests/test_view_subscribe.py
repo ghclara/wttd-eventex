@@ -21,7 +21,15 @@ class Subscriptions(TestCase):
     def test_html(self):
         '''Html contain tags
         '''
-        self.assertContains(self.response, '<form')
+
+        tags = (
+            ('<form'),
+            ('<input'),
+        )
+
+        for text in tags:
+            with self.subTest():
+                self.assertContains(self.response, text)
 
     def test_csrf(self):
         '''Html must contain csrf
