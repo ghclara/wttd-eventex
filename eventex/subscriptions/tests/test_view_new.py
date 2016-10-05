@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.shortcuts import resolve_url
 
 from eventex.subscriptions.forms import SubscriptionForm
 
@@ -6,7 +7,7 @@ from eventex.subscriptions.forms import SubscriptionForm
 class Subscriptions(TestCase):
 
     def setUp(self):
-        self.response = self.client.get('/inscricao/')
+        self.response = self.client.get(resolve_url('subscriptions:new'))
 
     def test_get(self):
         '''GET /inscricao/ must return status code 200

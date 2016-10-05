@@ -8,11 +8,11 @@ from .models import Subscription
 from .forms import SubscriptionForm
 
 
-def subscribe(request):
+def new(request):
     if request.method == 'POST':
         return create(request)
-    else:
-        return new(request)
+
+    return empty_form(request)
 
 
 def create(request):
@@ -39,7 +39,7 @@ def create(request):
     return HttpResponseRedirect('/inscricao/{}'.format(obj.pk))
 
 
-def new(request):
+def empty_form(request):
     return render(
         request,
         'subscriptions/subscription_form.html',
