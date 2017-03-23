@@ -19,3 +19,24 @@ class Speaker(models.Model):
 
     def get_absolute_url(self):
         return resolve_url('speaker_detail', slug=self.slug)
+
+
+class Contact(models.Model):
+
+    EMAIL = 'E'
+    PHONE = 'P'
+    KINDS = (
+        (EMAIL, 'Email'),
+        (PHONE, 'telefone'),
+    )
+
+    speaker = models.ForeignKey(Speaker, verbose_name='Palestrante')
+    king = models.CharField('Tipo', max_length=1, choices=KINDS)
+    value = models.CharField('Valor', max_length=255)
+
+    class Meta:
+        verbose_name = 'Contato'
+        verbose_name_plural = 'Contatos'
+
+    def __str__(self):
+        return self.value
